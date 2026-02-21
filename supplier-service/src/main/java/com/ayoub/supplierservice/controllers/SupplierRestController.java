@@ -1,5 +1,6 @@
 package com.ayoub.supplierservice.controllers;
 
+import com.ayoub.supplierservice.dto.SupplierDTO;
 import com.ayoub.supplierservice.entities.Supplier;
 import com.ayoub.supplierservice.service.SupplierService;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +28,13 @@ public class SupplierRestController {
     }
 
     @PostMapping("")
-    public Supplier saveSupplier(@RequestBody Supplier supplier){
-        return supplierService.saveSupplier(supplier);
+    public Supplier saveSupplier(@RequestBody SupplierDTO supplierDTO){
+        return supplierService.saveSupplier(supplierDTO);
     }
 
     @PutMapping("/{id}")
-    public Supplier updateSupplier(@PathVariable long id, @RequestBody Supplier supplier){
-        supplier.setId(id);
-        return supplierService.updateSupplier(supplier);
+    public Supplier updateSupplier(@PathVariable long id, @RequestBody SupplierDTO supplierDTO){
+        return supplierService.updateSupplier(id, supplierDTO);
     }
 
 }
