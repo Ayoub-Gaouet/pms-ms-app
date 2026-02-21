@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/supplier")
+@RequestMapping("/api/suppliers")
 @CrossOrigin(origins = "*")
 @RestController
 public class SupplierRestController {
@@ -16,22 +16,24 @@ public class SupplierRestController {
         this.supplierService = supplierService;
     }
 
-    @GetMapping("/suppliers")
+    @GetMapping("")
     public List<Supplier> getAllSuppliers(){
         return supplierService.getAllSuppliers();
     }
 
-    @GetMapping("/suppliers/{id}")
-    public Supplier findSupplierById( @PathVariable long id){
+    @GetMapping("/{id}")
+    public Supplier findSupplierById(@PathVariable long id){
         return supplierService.findSupplierById(id);
     }
 
-    @PostMapping("/suppliers/save")
+    @PostMapping("")
     public Supplier saveSupplier(@RequestBody Supplier supplier){
         return supplierService.saveSupplier(supplier);
     }
-    @PutMapping("/suppliers/update")
-    public Supplier updateSupplier(@RequestBody Supplier supplier){
+
+    @PutMapping("/{id}")
+    public Supplier updateSupplier(@PathVariable long id, @RequestBody Supplier supplier){
+        supplier.setId(id);
         return supplierService.updateSupplier(supplier);
     }
 

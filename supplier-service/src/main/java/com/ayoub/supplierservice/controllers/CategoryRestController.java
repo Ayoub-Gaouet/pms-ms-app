@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/category")
+@RequestMapping("/api/categories")
 public class CategoryRestController {
     private final CategoryService categoryService;
 
@@ -16,27 +16,28 @@ public class CategoryRestController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/categorys")
-    public List<Category> getAllCategorys() {
+    @GetMapping("")
+    public List<Category> getAllCategories() {
         return categoryService.getAllCategorys();
     }
 
-    @GetMapping("/categorys/{id}")
+    @GetMapping("/{id}")
     public Category findCategoryById(@PathVariable long id) {
         return categoryService.findCategoryById(id);
     }
 
-    @PostMapping("/categorys/add")
-    public Category saveCategory(Category category) {
+    @PostMapping("")
+    public Category saveCategory(@RequestBody Category category) {
         return categoryService.saveCategory(category);
     }
 
-    @PutMapping("/categorys/update")
-    public Category updateCategory(Category category) {
+    @PutMapping("/{id}")
+    public Category updateCategory(@PathVariable long id, @RequestBody Category category) {
+        category.setId(id); // Assure que l'id est bien défini
         return categoryService.updateCategory(category);
     }
 
-    @DeleteMapping("/categorys/delete/{id}")
+    @DeleteMapping("/{id}")
     public Category deleteCategory(@PathVariable long id) {
         return categoryService.deleteCategory(id);
     }
