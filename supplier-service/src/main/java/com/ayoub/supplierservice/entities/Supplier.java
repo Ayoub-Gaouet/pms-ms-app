@@ -1,13 +1,12 @@
 package com.ayoub.supplierservice.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -17,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 public class Supplier {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String tax_number;
@@ -25,6 +24,10 @@ public class Supplier {
     private String address;
     @ManyToOne
     private Category category;
+    @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime created_at;
+
+    @UpdateTimestamp
     private LocalDateTime updated_at;
 }

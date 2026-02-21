@@ -12,4 +12,7 @@ public interface SupplierService {
     public Supplier saveSupplier(Supplier supplier);
 
     public Supplier updateSupplier(Supplier supplier);
+
+    public Supplier findSupplierByIdCategory(long id);
+
 }

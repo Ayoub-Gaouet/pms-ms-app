@@ -33,4 +33,9 @@ public class SupplierServiceImpl implements SupplierService {
         return supplierRepository.save(supplier);
     }
 
+    @Override
+    public Supplier findSupplierByIdCategory(long id) {
+        return supplierRepository.findByCategoryId(id);
+    }
+
 }
