@@ -2,7 +2,6 @@ package com.ayoub.productservice.controllers;
 
 import com.ayoub.productservice.entities.Image;
 import com.ayoub.productservice.service.ImageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
