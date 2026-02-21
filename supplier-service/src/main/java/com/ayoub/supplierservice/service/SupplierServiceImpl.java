@@ -14,11 +14,11 @@ import java.util.List;
 public class SupplierServiceImpl implements SupplierService {
     private SupplierRepository supplierRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-    public SupplierServiceImpl(SupplierRepository supplierRepository) {
+    public SupplierServiceImpl(SupplierRepository supplierRepository, CategoryRepository categoryRepository) {
         this.supplierRepository = supplierRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override

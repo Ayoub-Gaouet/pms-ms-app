@@ -1,0 +1,32 @@
+package com.ayoub.productservice.entities;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private Double price;
+    @ManyToOne
+    private Categories categories;
+    private Long supplier_id;
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime created_at;
+    @UpdateTimestamp
+    private LocalDateTime updated_at;
+}
+
