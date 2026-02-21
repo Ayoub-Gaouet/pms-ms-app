@@ -1,13 +1,13 @@
 package com.ayoub.productservice.service;
 
-import com.ayoub.productservice.entities.Categories;
+import com.ayoub.productservice.entities.Category;
 
 import java.util.List;
 
 public interface CategoryService {
-    List<Categories> getAllCategories();
-    Categories findCategoryById(long id);
-    Categories saveCategory(Categories category);
-    Categories updateCategory(Categories category);
+    List<Category> getAllCategories();
+    Category findCategoryById(long id);
+    Category saveCategory(Category category);
+    Category updateCategory(Category category);
     void deleteCategory(long id);
 }

@@ -21,5 +21,5 @@ public class Image {
     @Lob
     private byte[] image;
     @OneToOne
-    private Categories categories;
+    private Category category;
 }

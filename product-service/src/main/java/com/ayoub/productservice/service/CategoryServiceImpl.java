@@ -1,6 +1,6 @@
 package com.ayoub.productservice.service;
 
-import com.ayoub.productservice.entities.Categories;
+import com.ayoub.productservice.entities.Category;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -13,22 +13,22 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Categories> getAllCategories() {
+    public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }
 
     @Override
-    public Categories findCategoryById(long id) {
+    public Category findCategoryById(long id) {
         return categoryService.findCategoryById(id);
     }
 
     @Override
-    public Categories saveCategory(Categories category) {
+    public Category saveCategory(Category category) {
         return categoryService.saveCategory(category);
     }
 
     @Override
-    public Categories updateCategory(Categories category) {
+    public Category updateCategory(Category category) {
         return categoryService.updateCategory(category);
     }
 
