@@ -21,8 +21,6 @@ public class Categories {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    @OneToOne
-    private Image image;
     @OneToMany(mappedBy = "categories")
     @JsonIgnore
     private List<Product> products;

@@ -2,6 +2,7 @@ package com.ayoub.productservice.service;
 
 import com.ayoub.productservice.dto.ProductDTO;
 import com.ayoub.productservice.entities.Product;
+import com.ayoub.productservice.repo.ImageRepository;
 import com.ayoub.productservice.repo.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -12,10 +13,12 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final ImageRepository imageRepository;
     final
     ModelMapper modelMapper;
-    public ProductServiceImpl(ProductRepository productRepository, ModelMapper modelMapper) {
+    public ProductServiceImpl(ProductRepository productRepository, ImageRepository imageRepository, ModelMapper modelMapper) {
         this.productRepository = productRepository;
+        this.imageRepository = imageRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -26,12 +29,26 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO saveProduct(ProductDTO productDTO) {
-        return convertEntityToDto( productRepository.save(convertDtoToEntity(productDTO)));
+        Long oldProdImageId =
+                this.findProductById(productDTO.getId()).getImage().getId();
+        Long newProdImageId = productDTO.getImage().getId();
+        ProductDTO avUpdated = convertEntityToDto(productRepository.save(convertDtoToEntity(productDTO)));
+        if (oldProdImageId != newProdImageId) //si l'image a été modifiée
+            imageRepository.deleteById(oldProdImageId);
+        return avUpdated;
     }
+
     @Override
     public ProductDTO updateProduct(ProductDTO productDTO) {
-        return convertEntityToDto( productRepository.save(convertDtoToEntity(productDTO)));
+        Long oldProdImageId =
+                this.findProductById(productDTO.getId()).getImage().getId();
+        Long newProdImageId = productDTO.getImage().getId();
+        ProductDTO avUpdated = convertEntityToDto(productRepository.save(convertDtoToEntity(productDTO)));
+        if (oldProdImageId != newProdImageId) //si l'image a été modifiée
+            imageRepository.deleteById(oldProdImageId);
+        return avUpdated;
     }
+
     @Override
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
@@ -53,7 +70,6 @@ public class ProductServiceImpl implements ProductService {
     public Product convertDtoToEntity(ProductDTO avionDTO) {
         Product product = new Product();
         product = modelMapper.map(avionDTO, Product.class);
-
         return product;
     }
 }

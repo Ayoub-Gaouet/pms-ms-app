@@ -22,6 +22,8 @@ public class Product {
     private Double price;
     @ManyToOne
     private Categories categories;
+    @OneToOne
+    private Image image;
     private Long supplier_id;
     @CreationTimestamp
     @Column(updatable = false)
